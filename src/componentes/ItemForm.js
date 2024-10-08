@@ -8,7 +8,9 @@ export default function ItemForm({ image, title, content, price, quantity, onInc
       <h2>{title}</h2>
       <p>{content}</p>
       <p>Preço: R${price}</p>
-
+      <button onClick={onIncrease}>+</button>
+      <p>{quantity}</p>
+      <button onClick={onDecrease}>-</button>
     </div>
   );
 }

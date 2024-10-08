@@ -1,6 +1,6 @@
 .card-container {
   display: flex;
-  justify-content: space-around; /* Espaço ao redor dos cards */
+  justify-content: space-around;
   align-items: center;
   padding: 20px;
 }
@@ -9,7 +9,7 @@
   background-color: #f5f5f5;
   border-radius: 8px;
   padding: 20px;
-  width: 200px; /* Largura dos cards */
+  width: 200px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
