@@ -1,7 +1,7 @@
 import React, { useState } from 'react'; // Adicionei o useState aqui
 import './App.css';
 import ItemForm from './componentes/ItemForm.js';
-import ItemForm from './componentes/TotalBill.js';
+import TotalBill from './componentes/TotalBill.js';
 
 function App() {
   const [quantidadeHamburguer, setQuantidadeHamburguer] = useState(1);
@@ -55,6 +55,8 @@ function App() {
         onIncrease={aumentarBatata}
         onDecrease={diminuirBatata}
       />
+
+      <TotalBill />
     </div>
   );
 }
