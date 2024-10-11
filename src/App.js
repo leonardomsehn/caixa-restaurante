@@ -7,6 +7,11 @@ function App() {
   const [quantidadeHamburguer, setQuantidadeHamburguer] = useState(1);
   const [quantidadeRefrigerante, setQuantidadeRefrigerante] = useState(1);
   const [quantidadeBatata, setQuantidadeBatata] = useState(1);
+  const [quantidadePessoas, setQuantidadePessoas] = useState(1);
+
+  const precoHamburguer = 25.00;
+  const precoRefrigerante = 5.00;
+  const precoBatata = 10.00;
 
   // Manipular state do hamburguer
   const aumentarHamburguer = () => setQuantidadeHamburguer(quantidadeHamburguer + 1);
@@ -26,6 +31,9 @@ function App() {
     if (quantidadeBatata > 0) setQuantidadeBatata(quantidadeBatata - 1);
   };
 
+  const total = (quantidadeHamburguer * precoHamburguer) + (quantidadeRefrigerante + precoRefrigerante) + (quantidadeBatata + precoBatata);
+
+  const perPerson = total / people;
   return (
     <div className="App">
       <ItemForm
@@ -56,7 +64,13 @@ function App() {
         onDecrease={diminuirBatata}
       />
 
-      <TotalBill />
+      {/* CRIAR INPUT */}
+
+      <TotalBill
+        total={total.toFixed(2)} // Formatar o valor total para ter 2 casas decimais
+        people={people}
+        perPerson={perPerson.toFixed(2)} // Formatar o valor por pessoa para ter 2 casas decimais
+      />
     </div>
   );
 }
