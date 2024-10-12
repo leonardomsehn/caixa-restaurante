@@ -31,9 +31,9 @@ function App() {
     if (quantidadeBatata > 0) setQuantidadeBatata(quantidadeBatata - 1);
   };
 
-  const total = (quantidadeHamburguer * precoHamburguer) + (quantidadeRefrigerante + precoRefrigerante) + (quantidadeBatata + precoBatata);
+  const total = (quantidadeHamburguer * precoHamburguer) + (quantidadeRefrigerante * precoRefrigerante) + (quantidadeBatata * precoBatata);
 
-  const perPerson = total / people;
+  const perPerson = total / quantidadePessoas;
   return (
     <div className="App">
       <ItemForm
@@ -65,13 +65,23 @@ function App() {
       />
 
       {/* CRIAR INPUT */}
+      <div>
+        <label htmlFor="people">Dividir a conta entre quantas pessoas?</label>
+        <input
+          id="people"
+          type="number"
+          value={quantidadePessoas}
+          min="1"
+          onChange={(e) => setQuantidadePessoas(parseInt(e.target.value))}
+        />
+      </div>
 
       <TotalBill
-        total={total.toFixed(2)} // Formatar o valor total para ter 2 casas decimais
-        people={people}
-        perPerson={perPerson.toFixed(2)} // Formatar o valor por pessoa para ter 2 casas decimais
+        total={total.toFixed(2)}
+        people={quantidadePessoas}
+        perPerson={perPerson.toFixed(2)}
       />
-    </div>
+    </div >
   );
 }
 
