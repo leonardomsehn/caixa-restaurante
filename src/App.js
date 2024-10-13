@@ -4,14 +4,16 @@ import ItemForm from './componentes/ItemForm.js';
 import TotalBill from './componentes/TotalBill.js';
 
 function App() {
-  const [quantidadeHamburguer, setQuantidadeHamburguer] = useState(1);
-  const [quantidadeRefrigerante, setQuantidadeRefrigerante] = useState(1);
-  const [quantidadeBatata, setQuantidadeBatata] = useState(1);
+  const [quantidadeHamburguer, setQuantidadeHamburguer] = useState(0);
+  const [quantidadeRefrigerante, setQuantidadeRefrigerante] = useState(0);
+  const [quantidadeBatata, setQuantidadeBatata] = useState(0);
+  const [quantidadeAgua, setQuantidadeAgua] = useState(0);
   const [quantidadePessoas, setQuantidadePessoas] = useState(1);
 
   const precoHamburguer = 25.00;
-  const precoRefrigerante = 5.00;
+  const precoRefrigerante = 6.00;
   const precoBatata = 10.00;
+  const precoAgua = 4.00;
 
   // Manipular state do hamburguer
   const aumentarHamburguer = () => setQuantidadeHamburguer(quantidadeHamburguer + 1);
@@ -31,56 +33,86 @@ function App() {
     if (quantidadeBatata > 0) setQuantidadeBatata(quantidadeBatata - 1);
   };
 
-  const total = (quantidadeHamburguer * precoHamburguer) + (quantidadeRefrigerante * precoRefrigerante) + (quantidadeBatata * precoBatata);
+  // Manipular state do agua
+  const aumentarAgua = () => setQuantidadeAgua(quantidadeAgua + 1);
+  const diminuirAgua = () => {
+    if (quantidadeAgua > 0) setQuantidadeAgua(quantidadeAgua - 1);
+  };
+
+  const total = (quantidadeHamburguer * precoHamburguer) + (quantidadeRefrigerante * precoRefrigerante) + (quantidadeBatata * precoBatata) + (quantidadeAgua * precoAgua);
 
   const perPerson = total / quantidadePessoas;
   return (
     <div className="App">
-      <ItemForm
-        image="https://via.placeholder.com/150"
-        title="Hamburguer"
-        content="Delicioso hamburguer com queijo e bacon."
-        price="25.00"
-        quantity={quantidadeHamburguer}
-        onIncrease={aumentarHamburguer}
-        onDecrease={diminuirHamburguer}
-      />
-      <ItemForm
-        image="https://via.placeholder.com/150"
-        title="Refrigerante"
-        content="Refrescante coca-cola gelada de 350ml."
-        price="5.00"
-        quantity={quantidadeRefrigerante}
-        onIncrease={aumentarRefrigerante}
-        onDecrease={diminuirRefrigerante}
-      />
-      <ItemForm
-        image="https://via.placeholder.com/150"
-        title="Batatas Fritas"
-        content="Porção de batatas fritas crocantes."
-        price="10.00"
-        quantity={quantidadeBatata}
-        onIncrease={aumentarBatata}
-        onDecrease={diminuirBatata}
-      />
+      <div className="Titulo">
+        <h1>Caixa</h1>
+      </div>
+      <div className="Cards">
+        <ItemForm
+          image="https://via.placeholder.com/150"
+          title="Hamburguer"
+          content="Delicioso hamburguer com queijo e bacon."
+          price="25.00"
+          quantity={quantidadeHamburguer}
+          onIncrease={aumentarHamburguer}
+          onDecrease={diminuirHamburguer}
+        />
+        <ItemForm
+          image="https://via.placeholder.com/150"
+          title="Batatas Fritas"
+          content="Porção de batatas fritas crocantes."
+          price="10.00"
+          quantity={quantidadeBatata}
+          onIncrease={aumentarBatata}
+          onDecrease={diminuirBatata}
+        />
+        <ItemForm
+          image="https://via.placeholder.com/150"
+          title="Refrigerante"
+          content="Refrescante coca-cola gelada de 350ml."
+          price="6.00"
+          quantity={quantidadeRefrigerante}
+          onIncrease={aumentarRefrigerante}
+          onDecrease={diminuirRefrigerante}
+        />
+        <ItemForm
+          image="https://via.placeholder.com/150"
+          title="Água"
+          content="Garrafa de água da pedra 500ml."
+          price="4.00"
+          quantity={quantidadeAgua}
+          onIncrease={aumentarAgua}
+          onDecrease={diminuirAgua}
+        />
+
+      </div>
 
       {/* CRIAR INPUT */}
-      <div>
+      <div className="Input">
         <label htmlFor="people">Dividir a conta entre quantas pessoas?</label>
         <input
           id="people"
           type="number"
           value={quantidadePessoas}
           min="1"
-          onChange={(e) => setQuantidadePessoas(parseInt(e.target.value))}
+          onChange={(e) => {
+            const valor = parseInt(e.target.value);
+            if (valor >= 1) {
+              setQuantidadePessoas(valor);
+            } else {
+              alert("O número de pessoas deve ser no mínimo 1!");
+            }
+          }}
         />
       </div>
 
-      <TotalBill
-        total={total.toFixed(2)}
-        people={quantidadePessoas}
-        perPerson={perPerson.toFixed(2)}
-      />
+      <div className="Bill">
+        <TotalBill
+          total={total.toFixed(2)}
+          people={quantidadePessoas}
+          perPerson={perPerson.toFixed(2)}
+        />
+      </div>
     </div >
   );
 }

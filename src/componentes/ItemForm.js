@@ -7,10 +7,12 @@ export default function ItemForm({ image, title, content, price, quantity, onInc
       <img src={image} alt={title} />
       <h2>{title}</h2>
       <p>{content}</p>
-      <p>Preço: R${price}</p>
-      <button onClick={onIncrease}>+</button>
-      <p>{quantity}</p>
-      <button onClick={onDecrease}>-</button>
+      <h3>R${price}</h3>
+      <div className="quantity">
+        <button className="decrease" onClick={onDecrease}>-</button>
+        <p>{quantity}</p>
+        <button className="increase" onClick={onIncrease}>+</button>
+      </div>
     </div>
   );
 }
