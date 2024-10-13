@@ -4,20 +4,21 @@ import ItemForm from './componentes/ItemForm.js';
 import TotalBill from './componentes/TotalBill.js';
 
 import hamburguerImg from './componentes/assets/hamburguer.png';
+import hamburguervegImg from './componentes/assets/hamburguer-veg.png';
 import batataImg from './componentes/assets/batatafrita.png';
 import refriImg from './componentes/assets/refri.png';
 import aguaImg from './componentes/assets/agua.png';
 
-
-
 function App() {
   const [quantidadeHamburguer, setQuantidadeHamburguer] = useState(0);
+  const [quantidadeHamburguerveg, setQuantidadeHamburguerveg] = useState(0);
   const [quantidadeRefrigerante, setQuantidadeRefrigerante] = useState(0);
   const [quantidadeBatata, setQuantidadeBatata] = useState(0);
   const [quantidadeAgua, setQuantidadeAgua] = useState(0);
   const [quantidadePessoas, setQuantidadePessoas] = useState(1);
 
   const precoHamburguer = 25.00;
+  const precoHamburguerveg = 23.00;
   const precoRefrigerante = 6.00;
   const precoBatata = 10.00;
   const precoAgua = 4.00;
@@ -26,6 +27,12 @@ function App() {
   const aumentarHamburguer = () => setQuantidadeHamburguer(quantidadeHamburguer + 1);
   const diminuirHamburguer = () => {
     if (quantidadeHamburguer > 0) setQuantidadeHamburguer(quantidadeHamburguer - 1);
+  };
+
+  // Manipular state do hamburguer veg
+  const aumentarHamburguerveg = () => setQuantidadeHamburguerveg(quantidadeHamburguerveg + 1);
+  const diminuirHamburguerveg = () => {
+    if (quantidadeHamburguerveg > 0) setQuantidadeHamburguerveg(quantidadeHamburguerveg - 1);
   };
 
   // Manipular state do refrigerante
@@ -46,7 +53,7 @@ function App() {
     if (quantidadeAgua > 0) setQuantidadeAgua(quantidadeAgua - 1);
   };
 
-  const total = (quantidadeHamburguer * precoHamburguer) + (quantidadeRefrigerante * precoRefrigerante) + (quantidadeBatata * precoBatata) + (quantidadeAgua * precoAgua);
+  const total = (quantidadeHamburguer * precoHamburguer) + (quantidadeRefrigerante * precoRefrigerante) + (quantidadeBatata * precoBatata) + (quantidadeAgua * precoAgua) + (quantidadeHamburguerveg * precoHamburguerveg);
 
   const perPerson = total / quantidadePessoas;
   return (
@@ -63,6 +70,15 @@ function App() {
           quantity={quantidadeHamburguer}
           onIncrease={aumentarHamburguer}
           onDecrease={diminuirHamburguer}
+        />
+        <ItemForm
+          image={hamburguervegImg}
+          title="Hamburguer Vegetariano"
+          content="Delicioso hamburguer vegatariano com soja."
+          price="23.00"
+          quantity={quantidadeHamburguerveg}
+          onIncrease={aumentarHamburguerveg}
+          onDecrease={diminuirHamburguerveg}
         />
         <ItemForm
           image={batataImg}
