@@ -4,10 +4,10 @@ import './css/ItemForm.css';
 export default function ItemForm({ image, title, content, price, quantity, onIncrease, onDecrease }) {
   return (
     <div className="card">
-      <img src={image} alt={title} />
+      <img src={image} alt={title} className="imagem-card" />
       <h2>{title}</h2>
       <p>{content}</p>
-      <h3>R${price}</h3>
+      <h4>R${price}</h4>
       <div className="quantity">
         <button className="decrease" onClick={onDecrease}>-</button>
         <p>{quantity}</p>

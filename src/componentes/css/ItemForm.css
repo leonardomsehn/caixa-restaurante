@@ -22,36 +22,44 @@
   font-size: 14px;
 }
 
+.imagem-card {
+  width: 150px;
+  height: 150px;
+  object-fit: cover; 
+  display: block;
+  margin: 0 auto;
+}
+
 .quantity {
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius: 12px;
   height: 30px;
-  gap: 10px; /* Espaço entre os botões */
+  gap: 10px; 
 }
 
 .quantity span {
   font-size: 16px;
-  padding: 0 10px; /* Espaço entre o número e os botões */
+  padding: 0 10px; 
 }
 
 .decrease, .increase {
   background-color: white; 
   color: black; 
-  width: 30px; /* Tamanho fixo dos botões */
+  width: 30px; 
   height: 30px;
-  border-radius: 50%; /* Botões arredondados */
+  border-radius: 50%; 
   display: flex;
   justify-content: center;
   align-items: center;
-  cursor: pointer; /* Mostrar que é clicável */
+  cursor: pointer; 
 }
 
 .decrease {
-  border: 2px solid #f44336; /* Vermelho */
+  border: 2px solid #f44336; 
 }
 
 .increase {
-  border: 2px solid #04AA6D; /* Verde */
+  border: 2px solid #04AA6D; 
 }

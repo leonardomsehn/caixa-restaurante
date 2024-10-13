@@ -3,6 +3,13 @@ import './App.css';
 import ItemForm from './componentes/ItemForm.js';
 import TotalBill from './componentes/TotalBill.js';
 
+import hamburguerImg from './componentes/assets/hamburguer.png';
+import batataImg from './componentes/assets/batatafrita.png';
+import refriImg from './componentes/assets/refri.png';
+import aguaImg from './componentes/assets/agua.png';
+
+
+
 function App() {
   const [quantidadeHamburguer, setQuantidadeHamburguer] = useState(0);
   const [quantidadeRefrigerante, setQuantidadeRefrigerante] = useState(0);
@@ -49,7 +56,7 @@ function App() {
       </div>
       <div className="Cards">
         <ItemForm
-          image="https://via.placeholder.com/150"
+          image={hamburguerImg}
           title="Hamburguer"
           content="Delicioso hamburguer com queijo e bacon."
           price="25.00"
@@ -58,7 +65,7 @@ function App() {
           onDecrease={diminuirHamburguer}
         />
         <ItemForm
-          image="https://via.placeholder.com/150"
+          image={batataImg}
           title="Batatas Fritas"
           content="Porção de batatas fritas crocantes."
           price="10.00"
@@ -67,16 +74,16 @@ function App() {
           onDecrease={diminuirBatata}
         />
         <ItemForm
-          image="https://via.placeholder.com/150"
+          image={refriImg}
           title="Refrigerante"
-          content="Refrescante coca-cola gelada de 350ml."
+          content="Refrigerante lata gelado de 350ml."
           price="6.00"
           quantity={quantidadeRefrigerante}
           onIncrease={aumentarRefrigerante}
           onDecrease={diminuirRefrigerante}
         />
         <ItemForm
-          image="https://via.placeholder.com/150"
+          image={aguaImg}
           title="Água"
           content="Garrafa de água da pedra 500ml."
           price="4.00"
